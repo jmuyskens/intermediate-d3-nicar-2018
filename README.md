@@ -135,6 +135,8 @@ Play with the following:
 
 docs: enter pattern example
 
+docs: [.data() key function](https://github.com/d3/d3-selection#selection_data)
+
 Demo: create an update function
 
 timer function:

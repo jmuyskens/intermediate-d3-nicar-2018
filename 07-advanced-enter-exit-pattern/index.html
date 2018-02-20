@@ -111,8 +111,11 @@
 
         yearLabel.text(yearData[0].TIME);
 
+        // TODO: .data() can take a "key" accessor function as a second argument
+        // which will be used to index the data across updates.
+        // Write a key function to index our circles by LOCATION
         circles = chartG.selectAll('circle')
-          .data(yearData, function(d) { return d.LOCATION; });
+          .data(yearData, function(d) { /* on your own */ });
 
         // TODO: uncomment
         // circles.exit().remove();
@@ -126,8 +129,9 @@
           .attr('cx', function(d) { return xScale(+d.HEALTHEXP); })
           .attr('cy', function(d) { return yScale(+d.LIFEEXP); });
 
+        // TODO: Write a key function to index our labels by LOCATION
         labels = chartG.selectAll('text.label')
-          .data(yearData, function(d) { return d.LOCATION; });
+          .data(yearData);
 
         // TODO: write an exit function for labels
 

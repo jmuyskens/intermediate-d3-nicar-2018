@@ -109,7 +109,7 @@
         yearLabel.text(yearData[0].TIME);
 
         circles = chartG.selectAll('circle')
-          .data(yearData, function(d) { return d.LOCATION; });
+          .data(yearData);
 
         circles.enter().append('circle')
           .attr('r', 0)
@@ -119,7 +119,7 @@
           .attr('cy', function(d) { return yScale(+d.LIFEEXP); });
 
         labels = chartG.selectAll('text.label')
-          .data(yearData, function(d) { return d.LOCATION; });
+          .data(yearData);
 
         labels.enter().append('text')
           .attr('class', 'label')
