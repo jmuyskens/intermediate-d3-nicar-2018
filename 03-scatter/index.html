@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <script>
+      // the d3 chart convention
+      var margin = {'top': 20, 'right': 40, 'bottom': 50, 'left': 50};
+      var width = 640 - margin.right - margin.left;
+      var height = 420 - margin.top - margin.bottom;
+      var circles;
+
+      // convenience function to make our transforms easier!
+      function translate(x, y) {
+        return 'translate(' + x + ',' + y + ')';
+      }
+
+      // TODO uncomment, review d3 chart convention
+      /*var svg = d3.select('body').append('svg')
+        .attr('width', width + margin.right + margin.left)
+        .attr('height', height + margin.top + margin.bottom)
+        .append('g')
+        .attr('transform', translate(margin.left, margin.top));*/
+
+      // load the data
+      d3.csv('/data/oecd.csv', function(oecd) {
+        oecd = oecd.filter(function(d) {
+          return d.HEALTHEXP !== "NA" && d.LIFEEXP !== "NA";
+        });
+
+        var healthExpenditures = oecd.map(function(d) { return +d.HEALTHEXP; });
+
+        var lifeExpectancies = oecd.map(function(d) { return +d.LIFEEXP; });
+
+        var dataByYear = d3.nest()
+          .key(function(d) { return d.TIME; })
+          .entries(oecd);
+
+        var dataByCountry = d3.nest()
+          .key(function(d) { return d.LOCATION; })
+          .entries(oecd);
+
+        // TODO: set up an x scale based on health expenditures
+        //var xScale = d3.scaleLinear()
+        //  .domain(on your own)
+        //  .range([0, width]);
+
+        // TODO: set up a y scale based on life expectancy
+        //var yScale = on your own!
+
+        // TODO: uncomment.
+        // This g element isn't technically necessary, but will help us keep the SVG organized
+        //var chartG = svg.append('g')
+        //  .attr('id', 'chart');
+
+        // TODO create an array of data for 2014
+        //var yearData = dataByYear[index on your own!].values;
+
+        // TODO use the .enter().append() pattern to create a scatterplot of SVG circles
+        circles = chartG.selectAll('circle')
+        //  .data(hint: you just defined this variable);
+
+        // use the "cx" and "cy" attributes to position the circles
+        circles.enter().append('circle')
+          .attr('fill', 'black')
+          .attr('r', 3)
+         // .attr('cx', on your own!)
+         // .attr('cy', on your own!)
+
+        // EXTRA CREDIT: try different years
+      });
+  </script>
+</body>

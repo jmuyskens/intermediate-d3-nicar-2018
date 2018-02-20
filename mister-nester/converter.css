@@ -1,0 +1,148 @@
+html {
+  font-family: "Helvetica", Arial;
+}
+
+body {
+  margin: 10px 20px;
+  background: #f0f0f0;
+  font-family: "Helvetica";
+  color: #666;
+  font-weight: 200;
+}
+
+a {
+  color: #004276;
+}
+
+p {
+  font-size: 15px;
+  line-height: 1.5em;
+  margin: 0 0 10px;
+}
+
+h1 {
+  font-family: "ratio", sans-serif;
+  font-size: 60px;
+  line-height: 1em;
+  font-weight: 200;
+  margin-bottom: 8px;
+}
+
+button {
+  background-color: #004276;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+/* Header */
+
+.header {
+  width: 840px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.description {
+  font-size: 15px;
+}
+
+/* Converter */
+
+#converter {
+  position: relative;
+  width: 100%;
+  border-top: solid 1px #aaa;
+  border-bottom: solid 1px #aaa;
+  margin: 30px 0;
+  padding: 0 0 20px;
+  overflow: hidden;
+}
+
+.left {
+  position: relative;
+  float: left;
+  width: 49%;
+  /*border-right: solid 1px #ccc;*/
+}
+
+.right {
+  position: relative;
+  float: right;
+  width: 49%;
+  /*border-left: solid 1px #ccc;*/
+}
+
+#converter textarea, #converter pre {
+  border: solid 1px #ddd;
+  border-radius: 4px;
+  background: #fff;
+  width: 100%;
+  height: 400px;
+  margin: 0;
+  padding: 0px;
+  font-size: 12px;
+  overflow-y: scroll;
+  font-family: monospace;
+}
+
+#converter .input textarea {
+  height: 185px;
+}
+
+#converter .code textarea {
+  height: 185px;
+}
+
+#converter .output pre {
+  height: 429px;
+}
+
+.snippets {
+  position: absolute;
+  right: 0;
+}
+
+.snippet {
+  font-size: 12px;
+  float: left;
+  margin-left: 10px;
+}
+
+.output button {
+  display: block;
+  margin: 17px 0
+/*  position: absolute;
+  right: 0;
+  top: 18px;*/
+}
+
+.controls {
+  width: 100%;
+  height: 40px;
+}
+
+#converter h3 {
+  font-family: "Helvetica";
+  color: #666;
+  font-weight: 200;
+  font-size: 16px;
+  line-height: 1em;
+  margin: 20px 0;
+}
+
+.output .controls select {
+  width: 150px;
+}
+
+.output .controls h3 {
+}
+
+/* Details */
+
+.details {
+  width: 720px;
+  margin: 0 auto 20px;
+}

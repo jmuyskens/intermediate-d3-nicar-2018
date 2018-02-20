@@ -1,0 +1,46 @@
+body { margin:0;position:fixed;top:0;right:0;bottom:0;left:0; }
+
+svg {
+  font-family: sans-serif;
+}
+
+.axis path {
+  display: none;
+}
+
+.axis.y line {
+  stroke: silver;
+}
+
+path.country {
+  opacity: 0.2;
+}
+
+path.country.highlight {
+  opacity: 1;
+}
+
+button {
+  margin: 10px;
+  display: block;
+}
+
+#chart text.label {
+   opacity: 0;
+   transition: opacity 1s;
+}
+
+#chart text.label.show {
+   opacity: 1;
+}
+
+path.voronoi {
+  opacity: 0;
+  fill: rgba(0, 0, 0, 0.1);
+  stroke: orange;
+}
+
+text#year-label {
+  font-size: 20px;
+  font-weight: 700;
+}

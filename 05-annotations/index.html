@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <script>
+      // the d3 chart convention
+      var margin = {'top': 20, 'right': 40, 'bottom': 50, 'left': 50};
+      var width = 640 - margin.right - margin.left;
+      var height = 420 - margin.top - margin.bottom;
+      var circles, labels;
+
+      // convenience function to make our transforms easier!
+      function translate(x, y) {
+        return 'translate(' + x + ',' + y + ')';
+      }
+
+      var svg = d3.select('body').append('svg')
+        .attr('width', width + margin.right + margin.left)
+        .attr('height', height + margin.top + margin.bottom)
+        .append('g')
+        .attr('transform', translate(margin.left, margin.top));
+
+      // load the data
+      d3.csv('/data/oecd.csv', function(oecd) {
+        oecd = oecd.filter(function(d) {
+          return d.HEALTHEXP !== "NA" && d.LIFEEXP !== "NA";
+        });
+
+        var dataByYear = d3.nest()
+          .key(function(d) { return d.TIME; })
+          .entries(oecd);
+
+        var dataByCountry = d3.nest()
+          .key(function(d) { return d.LOCATION; })
+          .entries(oecd);
+
+        var healthExpenditures = oecd.map(function(d) { return +d.HEALTHEXP; });
+
+        var lifeExpectancies = oecd.map(function(d) { return +d.LIFEEXP; });
+
+        var xScale = d3.scaleLinear()
+          .domain([0, d3.max(healthExpenditures)])
+          .range([0, width]);
+
+        var yScale = d3.scaleLinear()
+          .domain(d3.extent(lifeExpectancies))
+          .range([height, 0]);
+
+        var xAxis = d3.axisBottom(xScale).ticks(4);
+
+        var yAxis = d3.axisLeft(yScale)
+          .ticks(4)
+          .tickSize(width);
+
+        var axisG = svg.append('g')
+          .attr('id', 'axis');
+
+        axisG.append('g')
+          .attr('class', 'axis x')
+          .attr('transform', translate(0, height))
+          .call(xAxis);
+
+        axisG.append('g')
+          .attr('class', 'axis y')
+          .attr('transform', translate(width, 0))
+          .call(yAxis);
+
+        // TODO: label both axes with SVG text elements
+        // use transforms to position and rotate the labels as needed
+        // hint: take advantage of the width and height variables
+        // EXTRA CREDIT: try using the style() property "text-anchor" with values "start", "middle" or "end"
+
+        var chartG = svg.append('g')
+          .attr('id', 'chart');
+
+        // data for 2014
+        var yearData = dataByYear[dataByYear.length - 1].values;
+
+        // TODO: add an SVG text label that displays the year, based on yearData
+        // give it an id of "year-label"
+
+        circles = chartG.selectAll('circle')
+          .data(yearData);
+
+        circles.enter().append('circle')
+          .attr('r', 0)
+          .attr('fill', 'black')
+          .attr('r', 3)
+          .attr('cx', function(d) { return xScale(+d.HEALTHEXP); })
+          .attr('cy', function(d) { return yScale(+d.LIFEEXP); });
+
+        // TODO: following the circles example, create a set of SVG text elements to label
+        // with the country abbreviation in LOCATION
+        // use the class "label"
+        // use the "transform" attr to match the location of the circle
+        // use the "dx" and "dy" attr to create an appropriate offset
+        // EXTRA CREDIT: use the classed() function to only show a select few labels (try the class 'show')
+
+        //labels = chartG.selectAll(you are on your own now ;)
+      });
+  </script>
+</body>

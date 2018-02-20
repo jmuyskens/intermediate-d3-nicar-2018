@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <script>
+      // the d3 chart convention
+      var margin = {'top': 20, 'right': 40, 'bottom': 50, 'left': 50};
+      var width = 640 - margin.right - margin.left;
+      var height = 420 - margin.top - margin.bottom;
+      var circles, labels, countryPaths;
+
+      var DURATION = 250;
+
+      // convenience function to make our transforms easier!
+      function translate(x, y) {
+        return 'translate(' + x + ',' + y + ')';
+      }
+
+      var svg = d3.select('body').append('svg')
+        .attr('width', width + margin.right + margin.left)
+        .attr('height', height + margin.top + margin.bottom)
+        .append('g')
+        .attr('transform', translate(margin.left, margin.top));
+
+      // load the data
+      d3.csv('/data/oecd.csv', function(data) {
+        data = data.filter(function(d) {
+          return d.HEALTHEXP !== "NA" && d.LIFEEXP !== "NA";
+        });
+
+        var dataByYear = d3.nest()
+          .key(function(d) { return d.TIME; })
+          .entries(data);
+
+        var dataByCountry = d3.nest()
+          .key(function(d) { return d.LOCATION; })
+          .entries(data);
+
+        var healthExpenditures = data.map(function(d) { return +d.HEALTHEXP; });
+
+        var lifeExpectancies = data.map(function(d) { return +d.LIFEEXP; });
+
+        var xScale = d3.scaleLinear()
+          .domain([0, d3.max(healthExpenditures)])
+          .range([0, width]);
+
+        var yScale = d3.scaleLinear()
+          .domain(d3.extent(lifeExpectancies))
+          .range([height, 0]);
+
+        var xAxis = d3.axisBottom(xScale).ticks(4);
+
+        var yAxis = d3.axisLeft(yScale)
+          .ticks(4)
+          .tickSize(width);
+
+        var path = d3.line()
+          .x(function(d) { return xScale(+d.HEALTHEXP); })
+          .y(function(d) { return yScale(+d.LIFEEXP); });
+
+        var axisG = svg.append('g')
+          .attr('id', 'axis');
+
+        axisG.append('g')
+          .attr('class', 'axis x')
+          .attr('transform', translate(0, height))
+          .call(xAxis);
+
+        axisG.append('g')
+          .attr('class', 'axis y')
+          .attr('transform', translate(width, 0))
+          .call(yAxis);
+
+        axisG.append('text')
+          .attr('class', 'axis label')
+          .text('Health expenditure per capita (USD)')
+          .style('text-anchor', 'middle')
+          .attr('transform', translate(width / 2, height + 40));
+
+        axisG.append('text')
+          .attr('class', 'axis label')
+          .text('Life expectancy')
+          .style('text-anchor', 'middle')
+          .attr('transform', translate(-30, height / 2) + 'rotate(270)');
+
+        var chartG = svg.append('g')
+          .attr('id', 'chart');
+
+        countryPaths = chartG.selectAll('path.country')
+            .data(dataByCountry);
+
+        countryPaths.enter().append('path')
+          .attr('class', 'country')
+          .attr('stroke', 'black')
+          .attr('fill', 'none')
+          .attr('d', function(d) { return path(d.values); });
+
+        var yearLabel = svg.append('text')
+            .attr('id', 'year-label');
+
+        // function we can call every time we want to update our data
+        function update(data) {
+
+          yearLabel.text(data[0].TIME);
+
+          circles = chartG.selectAll('circle')
+            .data(data, function(d) { return d.LOCATION; });
+
+          // EXTRA CREDIT: add a transition after .exit() to smoothly remove circles
+          circles.exit().remove();
+
+          // TODO: uncomment these transitions and play with them
+          // EXTRA CREDIT: the entrance animation is distracting, get the circles to enter in place
+          circles.enter().append('circle')
+            .attr('r', 0)
+            .attr('fill', 'black')
+            .merge(circles)
+            //.transition()
+            //.duration(DURATION)
+            //.ease(d3.easeLinear)
+            .attr('r', 3)
+            .attr('cx', function(d) { return xScale(+d.HEALTHEXP); })
+            .attr('cy', function(d) { return yScale(+d.LIFEEXP); });
+
+          labels = chartG.selectAll('text.label')
+            .data(data, function(d) { return d.LOCATION; });
+
+          labels.exit().remove();
+
+          // TODO: use a transition to move the labels smoothly
+          labels.enter().append('text')
+            .attr('class', 'label')
+            .text(function(d) { return d.LOCATION; })
+            .attr('dx', 5)
+            .attr('dy', 3)
+            .merge(labels)
+            .classed('show', function(d) { return d.LOCATION === "USA" || d.LOCATION === "JPN" || d.LOCATION === "CHE" || d.LOCATION === "LVA"; })
+            .attr('transform', function(d) {
+              return translate(xScale(+d.HEALTHEXP), yScale(+d.LIFEEXP));
+            });
+        }
+
+        var i = 0;
+        var t = d3.interval(function() {
+          if (i < dataByYear.length) update(dataByYear[i++].values);
+          else t.stop();
+        }, DURATION);
+      });
+  </script>
+</body>

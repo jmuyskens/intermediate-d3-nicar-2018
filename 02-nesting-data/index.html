@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <script>
+      // load the data
+      d3.csv('/data/oecd.csv', function(oecd) {
+        oecd = oecd.filter(function(d) {
+          return d.HEALTHEXP !== "NA" && d.LIFEEXP !== "NA";
+        });
+
+        var healthExpenditures = oecd.map(function(d) { return +d.HEALTHEXP; });
+
+        var lifeExpectancies = oecd.map(function(d) { return +d.LIFEEXP; });
+
+        // nest your data by year, creating an array
+        //var dataByYear = d3.nest()
+
+        // nest your data by country, creating an array
+        //var dataByCountry = on your own
+
+      });
+  </script>
+</body>
