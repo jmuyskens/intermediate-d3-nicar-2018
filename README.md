@@ -15,7 +15,7 @@ This is designed to build on [the beginner workshop](https://github.com/darlacam
 
 [Docs: everything D3 can do](https://github.com/d3/d3/blob/master/API.md)
 
-We will make an animated chart together that shows the relationship between health spending and life expectancy using data from the OECD. This chart was inspired by Peter Aldhous ([you can view his implementation in R here](https://github.com/BuzzFeedNews/2017-05-us-health-care/)).
+We will make an animated chart together that shows the relationship between health spending and life expectancy using data from [the OECD](http://stats.oecd.org/#). This chart was inspired by Peter Aldhous ([you can view his implementation in R here](https://github.com/BuzzFeedNews/2017-05-us-health-care/)).
 
 Each step involves reading some documentation, then writing a few lines of code. If you get stuck, there is a link at the end of each step to a working implementation.
 
@@ -117,6 +117,8 @@ Play with the following:
 
 [starting point](/05-annotations)
 
+[Docs: text-anchor](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/text-anchor)
+
 [what it should look like](/06-connected-scatter)
 
 ## 6. Connected scatterplot
@@ -174,10 +176,11 @@ Demo: create a mouseover function for the circles
 
 Task: make a replay “button” that triggers when you `’click’` it.
 
+Extra credit docs: [Voronoi](https://github.com/d3/d3-voronoi)
+
 [what it should look like](/10-final)
 
 # what's in the advanced class
-- Voronoi
 - Layouts (force, hierarchy)
 - Geo tools
 - Modules
