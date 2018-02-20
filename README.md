@@ -55,7 +55,7 @@ Goal is to structure your data the way you want your DOM to look.
 
 [Docs: d3.nest](https://github.com/d3/d3-collection#nests)
 
-![nest diagram](nest.png)
+![nest diagram](img/nest.png)
 
 `.entries` returns an array
 
