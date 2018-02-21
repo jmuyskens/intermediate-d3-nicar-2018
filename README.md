@@ -23,7 +23,9 @@ Each step builds upon the last one. We will discuss the new concepts introduced 
 
 [starting point](/01-working-with-data)
 
-First, lets load our data: [Docs: d3.csv](https://github.com/d3/d3-request/blob/master/README.md#csv).
+Before we start, a word about anonymous functions
+
+Load the data: [Docs: d3.csv](https://github.com/d3/d3-request/blob/master/README.md#csv).
 
     d3.csv(‘oecd.csv’, function(data) { // do things with the data });
 
@@ -169,6 +171,8 @@ We are familiar with `.enter()` which gets called for new data points. But now w
 
 We also need to tell `.data()` how to index our dataset (linking data points between updates) by writing a key function.
 
+![update pattern](img/enter-merge-exit.png)
+
 docs: [.data() key function](https://github.com/d3/d3-selection#selection_data), [Bostock's explanation](https://bost.ocks.org/mike/constancy/)
 
 [what it should look like](/08-transitions)
@@ -231,4 +235,11 @@ Extra credit docs: [Voronoi](https://github.com/d3/d3-voronoi)
 
 [Observable](https://beta.observablehq.com/) Mike Bostock's shiny new notebook coding environment. [Example](https://beta.observablehq.com/@jmuyskens/pennsylvania-redistricting).
 
+# Metadocumentation
+
+The data (`data/oecd.csv`) is created by an R script `oecd.R` which is included in this repository. You can run it:
+
+  Rscript oecd.R
+  
+`index.html` is generated from README.md using `readme.R`. I've also included `intermediate-d3-nicar-2018.Rproj` which can be opened in RStudio.
 
