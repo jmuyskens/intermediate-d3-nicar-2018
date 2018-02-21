@@ -237,9 +237,9 @@ Extra credit docs: [Voronoi](https://github.com/d3/d3-voronoi)
 
 # Metadocumentation
 
-The data (`data/oecd.csv`) is created by an R script `oecd.R` which is included in this repository. You can run it:
+The data (`data/oecd.csv`) is created by an R script `oecd.R` which is included in this repository. You can run it like this:
 
-  Rscript oecd.R
+    Rscript oecd.R
   
 `index.html` is generated from README.md using `readme.R`. I've also included `intermediate-d3-nicar-2018.Rproj` which can be opened in RStudio.
 
