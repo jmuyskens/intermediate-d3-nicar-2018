@@ -66,7 +66,7 @@ Now repeat the excercise using `.entries`. Note that the structure changes.
 
 [what it should look like](/03-scatter)
 
-## 3. Scatter plot
+## 3. Scatterplot
 [starting point](/03-scatter)
 
 ### setting up the chart
