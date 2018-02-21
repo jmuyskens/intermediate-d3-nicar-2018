@@ -26,7 +26,7 @@
       // load the data
       d3.csv('/data/oecd.csv', function(oecd) {
         oecd = oecd.filter(function(d) {
-          return d.HEALTHEXP !== "NA" && d.LIFEEXP !== "NA";
+          return d.HEALTHEXP_USD_CAP !== "NA" && d.LIFEEXP !== "NA";
         });
 
         var dataByYear = d3.nest()
@@ -37,7 +37,7 @@
           .key(function(d) { return d.LOCATION; })
           .entries(oecd);
 
-        var healthExpenditures = oecd.map(function(d) { return +d.HEALTHEXP; });
+        var healthExpenditures = oecd.map(function(d) { return +d.HEALTHEXP_USD_CAP; });
 
         var lifeExpectancies = oecd.map(function(d) { return +d.LIFEEXP; });
 
@@ -82,7 +82,7 @@
           .attr('r', 0)
           .attr('fill', 'black')
           .attr('r', 3)
-          .attr('cx', function(d) { return xScale(+d.HEALTHEXP); })
+          .attr('cx', function(d) { return xScale(+d.HEALTHEXP_USD_CAP); })
           .attr('cy', function(d) { return yScale(+d.LIFEEXP); });
       });
   </script>

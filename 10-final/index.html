@@ -27,22 +27,22 @@
         .attr('transform', translate(margin.left, margin.top));
 
       // load the data
-      d3.csv('/data/oecd.csv', function(data) {
-        data = data.filter(function(d) {
-          return d.HEALTHEXP !== "NA" && d.LIFEEXP !== "NA";
+      d3.csv('/data/oecd.csv', function(oecd) {
+        oecd = oecd.filter(function(d) {
+          return d.HEALTHEXP_USD_CAP !== "NA" && d.LIFEEXP !== "NA";
         });
 
         var dataByYear = d3.nest()
           .key(function(d) { return d.TIME; })
-          .entries(data);
+          .entries(oecd);
 
         var dataByCountry = d3.nest()
           .key(function(d) { return d.LOCATION; })
-          .entries(data);
+          .entries(oecd);
 
-        var healthExpenditures = data.map(function(d) { return +d.HEALTHEXP; });
+        var healthExpenditures = oecd.map(function(d) { return +d.HEALTHEXP_USD_CAP; });
 
-        var lifeExpectancies = data.map(function(d) { return +d.LIFEEXP; });
+        var lifeExpectancies = oecd.map(function(d) { return +d.LIFEEXP; });
 
         var xScale = d3.scaleLinear()
           .domain([0, d3.max(healthExpenditures)])
@@ -59,7 +59,7 @@
           .tickSize(width);
 
         var path = d3.line()
-          .x(function(d) { return xScale(+d.HEALTHEXP); })
+          .x(function(d) { return xScale(+d.HEALTHEXP_USD_CAP); })
           .y(function(d) { return yScale(+d.LIFEEXP); });
 
         var axisG = svg.append('g')
@@ -117,7 +117,7 @@
 
           circles.enter().append('circle')
             .attr('r', 0)
-            .attr('cx', function(d) { return xScale(+d.HEALTHEXP); })
+            .attr('cx', function(d) { return xScale(+d.HEALTHEXP_USD_CAP); })
             .attr('cy', function(d) { return yScale(+d.LIFEEXP); })
             .attr('fill', 'black')
             .merge(circles)
@@ -125,7 +125,7 @@
             .duration(DURATION)
             .ease(d3.easeLinear)
             .attr('r', 3)
-            .attr('cx', function(d) { return xScale(+d.HEALTHEXP); })
+            .attr('cx', function(d) { return xScale(+d.HEALTHEXP_USD_CAP); })
             .attr('cy', function(d) { return yScale(+d.LIFEEXP); });
 
           labels = chartG.selectAll('text.label')
@@ -139,7 +139,7 @@
             .attr('dx', 5)
             .attr('dy', 3)
             .attr('transform', function(d) {
-              return translate(xScale(+d.HEALTHEXP), yScale(+d.LIFEEXP));
+              return translate(xScale(+d.HEALTHEXP_USD_CAP), yScale(+d.LIFEEXP));
             })
             .merge(labels)
             .classed('show', function(d) { return d.LOCATION === "USA" || d.LOCATION === "JPN" || d.LOCATION === "CHE" || d.LOCATION === "LVA"; })
@@ -147,11 +147,11 @@
             .duration(DURATION)
             .ease(d3.easeLinear)
             .attr('transform', function(d) {
-              return translate(xScale(+d.HEALTHEXP), yScale(+d.LIFEEXP));
+              return translate(xScale(+d.HEALTHEXP_USD_CAP), yScale(+d.LIFEEXP));
             });
 
            var voronoi = d3.voronoi()
-            .x(function(d) { return xScale(+d.HEALTHEXP); })
+            .x(function(d) { return xScale(+d.HEALTHEXP_USD_CAP); })
             .y(function(d) { return yScale(+d.LIFEEXP); })
             .extent([[-margin.left, -margin.top], [width + margin.right, height + margin.bottom]]);
 

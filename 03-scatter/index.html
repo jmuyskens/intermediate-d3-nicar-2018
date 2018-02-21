@@ -27,10 +27,10 @@
       // load the data
       d3.csv('/data/oecd.csv', function(oecd) {
         oecd = oecd.filter(function(d) {
-          return d.HEALTHEXP !== "NA" && d.LIFEEXP !== "NA";
+          return d.HEALTHEXP_USD_CAP !== "NA" && d.LIFEEXP !== "NA";
         });
 
-        var healthExpenditures = oecd.map(function(d) { return +d.HEALTHEXP; });
+        var healthExpenditures = oecd.map(function(d) { return +d.HEALTHEXP_USD_CAP; });
 
         var lifeExpectancies = oecd.map(function(d) { return +d.LIFEEXP; });
 
