@@ -1,4 +1,4 @@
-# Intermediate D3 workshop | NICAR 2018
+# Intermediate D3 workshop at NICAR 2018
 We will build on D3.js basics by exploring more complex chart forms, covering functions for fetching and manipulating data, and introducing transitions and interaction. We will write working code together and break down how some of our favorite examples of D3 charts work.
 
 This is designed to build on [the beginner workshop](https://github.com/darlacameron/beginning-d3-nicar-2018).
@@ -17,10 +17,7 @@ This is designed to build on [the beginner workshop](https://github.com/darlacam
 
 We will make an animated chart together that shows the relationship between health spending and life expectancy using data from [the OECD](http://stats.oecd.org/#). This chart was inspired by Peter Aldhous ([you can view his implementation in R here](https://github.com/BuzzFeedNews/2017-05-us-health-care/)).
 
-Each step involves reading some documentation, then writing a few lines of code. If you get stuck, there is a link at the end of each step to a working implementation.
-
-We will be using Blockbuilder to write code. Blockbuilder is a code editor that runs in your browser and shows you the results which refresh as you write. If you have a GitHub account, you can log in and save your code as Gists. [Here's a link to the starting point for our workshop.](http://blockbuilder.org/jmuyskens/4a3c352e1979e3d61eac78ffa8c2f205)
-
+Each step builds upon the last one. We will discuss the new concepts introduced in the step, read some documentation and then write a few lines of code (look for commented `TODO`s). If you get stuck, you can always peek at the next step to see how I wrote the code.
 
 ## 1. Functional programming and data analysis
 
