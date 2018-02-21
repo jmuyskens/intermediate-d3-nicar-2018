@@ -19,7 +19,7 @@ We will make an animated chart together that shows the relationship between heal
 
 Each step builds upon the last one. We will discuss the new concepts introduced in the step, read some documentation and then write a few lines of code (look for commented `TODO`s). If you get stuck, you can always peek at the next step to see how I wrote the code.
 
-## 1. Functional programming and data analysis
+## 1. Working with data
 
 [starting point](/01-working-with-data)
 
