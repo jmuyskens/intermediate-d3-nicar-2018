@@ -21,7 +21,7 @@ Each step builds upon the last one. We will discuss the new concepts introduced 
 
 ## 1. Working with data
 
-[starting point](/01-working-with-data)
+[starting point](/01-working-with-data/)
 
 Before we start, a word about anonymous functions
 
@@ -42,11 +42,11 @@ Finally, lets play with some helpful [d3-array](https://github.com/d3/d3-array/)
 
 [d3.max](https://github.com/d3/d3-array/#max), [d3.min](https://github.com/d3/d3-array/#min), [d3.mean](https://github.com/d3/d3-array/#mean), [d3.median](https://github.com/d3/d3-array/#median), [d3.extent](https://github.com/d3/d3-array/#extent)
 
-[what it should look like](/02-nesting-data)
+[what it should look like](/02-nesting-data/)
 
 ## 2. Grouping data
 
-[starting point](/02-nesting-data)
+[starting point](/02-nesting-data/)
 
 Our goal is to structure the data in the way we want our SVG to be structured.
 
@@ -66,10 +66,10 @@ create an object called `dataByYear` and use it with your circle selection. Try 
 
 Now repeat the excercise using `.entries`. Note that the structure changes.
 
-[what it should look like](/03-scatter)
+[what it should look like](/03-scatter/)
 
 ## 3. Scatterplot
-[starting point](/03-scatter)
+[starting point](/03-scatter/)
 
 ### setting up the chart
 
@@ -106,10 +106,10 @@ Task: use the [`.data().enter().append()` pattern](https://github.com/d3/d3-sele
 
 Extra credit: see what happens if you change the domain of your y scale to include zero. When MUST a chart have a zero baseline? [(more on this topic)](https://www.washingtonpost.com/graphics/politics/2016-election/trump-charts/) Try plotting the year on the x-axis rather than health expenditures.
 
-[what it should look like](/04-axes)
+[what it should look like](/04-axes/)
 
 ## 4. Axes
-[starting point](/04-axes)
+[starting point](/04-axes/)
 
 [Docs: D3 axis](https://github.com/d3/d3-axis)
 
@@ -135,11 +135,11 @@ Play with the following:
 
 [Docs: axis ticks](https://github.com/d3/d3-axis#axis_ticks)
 
-[what it should look like](/05-annotations)
+[what it should look like](/05-annotations/)
 
 ## 5. Annotations
 
-[starting point](/05-annotations)
+[starting point](/05-annotations/)
 
 Our chart is meaningless without labels. Let's label the axes and (some of) the points using SVG `<text>` elements.
 
@@ -151,7 +151,7 @@ Our chart is meaningless without labels. Let's label the axes and (some of) the 
 
 ## 6. Connected scatterplot
 
-[starting point](/06-connected-scatter)
+[starting point](/06-connected-scatter/)
 
 Lets make a connected scatterplot by drawing a path for each country. Connected scatterplots are cool because they give us an alternate way to present comparative time series data. The effectiveness of this chart type is highly dependent on trends in your data. If your dataset has heavily cyclical trends, for instance, a connected scatterplot may end up looking like an incomprehensible scribble. But with the right data they can really shine. [Learn more.](https://eagereyes.org/papers/the-connected-scatterplot-for-presenting-paired-time-series)
 
@@ -159,7 +159,7 @@ We can use the data we grouped by country in step 2 and the scales we already se
 
 [Docs: d3.line](https://github.com/d3/d3-shape#lines)
 
-[what it should look like](/07-advanced-enter-exit-pattern)
+[what it should look like](/07-advanced-enter-exit-pattern/)
 
 ## 7. Advanced update pattern
 
@@ -175,11 +175,11 @@ We also need to tell `.data()` how to index our dataset (linking data points bet
 
 docs: [.data() key function](https://github.com/d3/d3-selection#selection_data), [Bostock's explanation](https://bost.ocks.org/mike/constancy/)
 
-[what it should look like](/08-transitions)
+[what it should look like](/08-transitions/)
 
 ## 8. Transitions
 
-[starting point](/08-transitions)
+[starting point](/08-transitions/)
 
 [Docs: d3 transition](https://github.com/d3/d3-transition)
 
@@ -189,11 +189,11 @@ Task: add a transition to `labels`.
 
 Extra credit: add transitions to .exit() calls.
 
-[what it should look like](/09-interaction)
+[what it should look like](/09-interaction/)
 
 ## 9. Interaction
 
-[starting point](/09-interaction)
+[starting point](/09-interaction/)
 
 When entering or adding elements chain `.on(EVENTNAME, callback)`. Similar to jQuery, this calls a function when an event happens.
 
@@ -211,7 +211,7 @@ Task: make a replay “button” that triggers when you `’click’` it.
 
 Extra credit docs: [Voronoi](https://github.com/d3/d3-voronoi)
 
-[what it should look like](/10-final)
+[what it should look like](/10-final/)
 
 # what's in the advanced class
 - Layouts (force, hierarchy)

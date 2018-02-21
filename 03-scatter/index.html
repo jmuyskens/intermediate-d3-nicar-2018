@@ -35,7 +35,7 @@
         var lifeExpectancies = oecd.map(function(d) { return +d.LIFEEXP; });
 
         var dataByYear = d3.nest()
-          .key(function(d) { return d.TIME; })
+          .key(function(d) { return d.TIME; }).sortKeys(d3.ascending)
           .entries(oecd);
 
         var dataByCountry = d3.nest()

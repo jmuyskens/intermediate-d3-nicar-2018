@@ -27,6 +27,6 @@ oecd <-
   bind_rows(infant.mortality) %>%
   select(LOCATION, TIME, INDICATOR, Value) %>%
   spread(INDICATOR, Value) %>%
-  filter(TIME >= 1970)
+  filter(TIME >= 1970, TIME <= 2015)
 
 write.csv(oecd, "data/oecd.csv")
