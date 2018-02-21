@@ -1,11 +1,10 @@
 var codeSamples = [
 // Default
 { label: "Identity", code: "d3.nest()\n  .map(data);"},
-{ label: "By charge", code: "d3.nest()\n  .key(function(d) { return d.charges; })\n  .map(data);"},
-{ label: "Cases by charge", code: "d3.nest()\n  .key(function(d) { return d.charges; })\n  .rollup(function(d) { return d.length; })\n  .map(data);"},
-{ label: "Cases by year", code: "var parseTime = d3.timeParse('%d/%m/%Y');\n\nd3.nest()\n  .key(function(d) { return parseTime(d.cs_date_filed).getFullYear(); })\n  .rollup(function(d) { return d.length; })\n  .object(data);"},
-{ label: "Cases by year and charge", code: "var parseTime = d3.timeParse('%d/%m/%Y');\n\nd3.nest()\n  .key(function(d) { return parseTime(d.cs_date_filed).getFullYear(); })\n  .key(function(d) { return d.charges; })\n  .rollup(function(d) { return d.length; })\n  .object(data);"},
-{ label: "Cases by year (entries)", code: "var parseTime = d3.timeParse('%d/%m/%Y');\n\nd3.nest()\n  .key(function(d) { return parseTime(d.cs_date_filed).getFullYear(); }).sortKeys(d3.ascending)\n  .rollup(function(d) { return d.length; })\n  .entries(data);\n"},
+{ label: "By country", code: "d3.nest()\n  .key(function(d) { return d.LOCATION; })\n  .map(data);"},
+{ label: "By year", code: "d3.nest()\n  .key(function(d) { return d.TIME; })\n  .map(data);"},
+{ label: "Number of countries by year", code: "d3.nest()\n  .key(function(d) { return d.TIME; })\n  .rollup(function(d) { return d.length; })\n  .map(data);"},
+{ label: "By country (entries)", code: "d3.nest()\n  .key(function(d) { return d.LOCATION; })\n  .entries(data);"},
 ];
 
 var html = d3.select("#converter");
@@ -59,7 +58,7 @@ var codeOutput = output.append("pre");
 
 codeOutput.append("code");
 
-d3.text("https://raw.githubusercontent.com/propublica/northern-il-federal-gun-cases/master/processed/federal-gun-cases.csv", function(d) {
+d3.text("/data/oecd.csv", function(d) {
 
     input.select("textarea")
         .property("value", d);
@@ -81,10 +80,10 @@ function update() {
 
   var out = eval(c);
   renderjson.set_show_to_level(1);
-  if (codeOutput.node().hasChildNodes()) {
+  /*if (codeOutput.node().hasChildNodes()) {
     codeOutput.node().removeChild(codeOutput.node().childNodes[0]);
-  }
-  codeOutput.node().append(renderjson(out));
-
-  //hljs.highlightBlock(codeOutput.node());
+  }*/
+  //codeOutput.node().append(renderjson(out));
+  codeOutput.text(JSON.stringify(out, null, 4));
+  hljs.highlightBlock(codeOutput.node());
 }

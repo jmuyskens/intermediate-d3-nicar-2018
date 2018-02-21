@@ -9,7 +9,8 @@ svg {
 }
 
 .axis.y line {
-  stroke: silver;
+  stroke: #bbb;
+  stroke-dasharray: 2px 2px;
 }
 
 path.country {
