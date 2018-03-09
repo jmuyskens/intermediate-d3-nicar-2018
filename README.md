@@ -147,7 +147,7 @@ Our chart is meaningless without labels. Let's label the axes and (some of) the 
 
 [Docs: text-anchor](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/text-anchor)
 
-[what it should look like](/06-connected-scatter)
+[what it should look like](/06-connected-scatter/)
 
 ## 6. Connected scatterplot
 
